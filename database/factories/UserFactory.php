@@ -13,7 +13,7 @@ use Faker\Generator as Faker;
 |
 */
 
-$factory->define(LaravelVue\Models\Task::class, function (Faker $faker) {
+$factory->define(Vue\Models\Task::class, function (Faker $faker) {
     return [
         'keep' => $faker->sentence,
     ];

@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => LaravelVue\User::class,
+            'model' => Vue\User::class,
         ],
 
         // 'users' => [

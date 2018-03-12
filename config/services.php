@@ -30,7 +30,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => LaravelVue\User::class,
+        'model' => Vue\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],

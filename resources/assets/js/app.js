@@ -6,7 +6,8 @@ new Vue({
 	data: {
 		keeps: [],
 		newKeep: '',
-		errors: []
+		errors: [],
+		fillKeep: {'id' : '', 'keep': ''}
 	},
 	methods:{
 		
@@ -14,6 +15,25 @@ new Vue({
 			var urlKeeps = 'tasks';
 			axios.get(urlKeeps).then(response => {
 				this.keeps = response.data
+			});
+		},
+
+		editKeep: function(keep){
+			this.fillKeep.id = keep.id;
+			this.fillKeep.keep = keep.keep;
+			$('#edit').modal('show');
+		},
+
+		updateKeep: function(id){
+			var url = 'tasks/' + id ;
+			axios.put(url,this.fillKeep).then(response => {
+				this.getKeeps();
+				this.fillKeep = {'id' : '', 'keep':''};
+				this.errors = [];
+				$('#edit').modal('hide');
+				toastr.success('Tarea actualizada con éxito');
+			}).catch(error => {
+				this.errors = error.response.data;
 			});
 		},
 
@@ -36,7 +56,7 @@ new Vue({
 				this.newKeep = '';
 				this.error = [];
 				$('#create').modal('hide');
-				toastr.success('Nueva tarea agregada con exito');
+				toastr.success('Nueva tarea agregada con éxito');
 			}).catch(error => {
 				this.error = error.response.data;
 			});

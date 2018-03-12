@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelVue\Providers;
+namespace Vue\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'LaravelVue\Events\Event' => [
-            'LaravelVue\Listeners\EventListener',
+        'Vue\Events\Event' => [
+            'Vue\Listeners\EventListener',
         ],
     ];
 

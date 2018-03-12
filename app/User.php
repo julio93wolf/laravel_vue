@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelVue;
+namespace Vue;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;

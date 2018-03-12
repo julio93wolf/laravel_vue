@@ -1,9 +1,9 @@
 <?php
 
-namespace LaravelVue\Http\Controllers\Auth;
+namespace Vue\Http\Controllers\Auth;
 
-use LaravelVue\User;
-use LaravelVue\Http\Controllers\Controller;
+use Vue\User;
+use Vue\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -59,7 +59,7 @@ class RegisterController extends Controller
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
-     * @return \LaravelVue\User
+     * @return \Vue\User
      */
     protected function create(array $data)
     {

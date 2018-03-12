@@ -28,17 +28,17 @@ $app = new Illuminate\Foundation\Application(
 
 $app->singleton(
     Illuminate\Contracts\Http\Kernel::class,
-    LaravelVue\Http\Kernel::class
+    Vue\Http\Kernel::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Console\Kernel::class,
-    LaravelVue\Console\Kernel::class
+    Vue\Console\Kernel::class
 );
 
 $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
-    LaravelVue\Exceptions\Handler::class
+    Vue\Exceptions\Handler::class
 );
 
 /*

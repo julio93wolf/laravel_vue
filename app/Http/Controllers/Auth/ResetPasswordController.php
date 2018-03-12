@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelVue\Http\Controllers\Auth;
+namespace Vue\Http\Controllers\Auth;
 
-use LaravelVue\Http\Controllers\Controller;
+use Vue\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 
 class ResetPasswordController extends Controller

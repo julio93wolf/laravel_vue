@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelVue\Http\Middleware;
+namespace Vue\Http\Middleware;
 
 use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;
 

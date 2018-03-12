@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelVue\Models;
+namespace Vue\Models;
 
 use Illuminate\Database\Eloquent\Model;
 

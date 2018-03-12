@@ -1,8 +1,8 @@
 <?php
 
-namespace LaravelVue\Http\Controllers;
+namespace Vue\Http\Controllers;
 
-use LaravelVue\Models\Task;
+use Vue\Models\Task;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -46,7 +46,7 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \LaravelVue\Models\Task  $task
+     * @param  \Vue\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
     public function show(Task $task)
@@ -57,7 +57,7 @@ class TaskController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \LaravelVue\Models\Task  $task
+     * @param  \Vue\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
     public function edit(Task $task)
@@ -70,18 +70,21 @@ class TaskController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \LaravelVue\Models\Task  $task
+     * @param  \Vue\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Task $task)
     {
-        //
+        $task = Task::find($task);
+        $task->keep = $request->keep;
+        $task->save();
+        return;
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \LaravelVue\Models\Task  $task
+     * @param  \Vue\Models\Task  $task
      * @return \Illuminate\Http\Response
      */
     public function destroy(Task $task)

@@ -154,11 +154,11 @@ return [
         /*
          * Application Service Providers...
          */
-        LaravelVue\Providers\AppServiceProvider::class,
-        LaravelVue\Providers\AuthServiceProvider::class,
-        // LaravelVue\Providers\BroadcastServiceProvider::class,
-        LaravelVue\Providers\EventServiceProvider::class,
-        LaravelVue\Providers\RouteServiceProvider::class,
+        Vue\Providers\AppServiceProvider::class,
+        Vue\Providers\AuthServiceProvider::class,
+        // Vue\Providers\BroadcastServiceProvider::class,
+        Vue\Providers\EventServiceProvider::class,
+        Vue\Providers\RouteServiceProvider::class,
 
     ],
 
