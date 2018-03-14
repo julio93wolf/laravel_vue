@@ -23262,16 +23262,49 @@ new Vue({
 	},
 	data: {
 		keeps: [],
+		pagination:{
+			'total': 0,
+			'current_page': 0,
+			'per_page': 0,
+			'last_page': 0,
+			'from': 0,
+			'to': 0
+		},
 		newKeep: '',
 		errors: [],
 		fillKeep: {'id' : '', 'keep': ''}
 	},
+	computed:{
+		isActived: function(){
+			return this.pagination.current_page;
+		},
+		pagesNumber: function(){
+			if (!this.pagination.to) {
+				return [];
+			}
+			var from = this.pagination.current_page - 2; //TODO [Offset]
+			if(from < 1){
+				form = 1;
+			}
+			var to = from + (2 * 2); //TODO [Offset]
+			if (to >= this.pagination.last_page){
+				to = this.pagination.last_page;
+			}
+			var pageArray = [];
+			while(from <= to){
+				pageArray.push(from);
+				from++;
+			}
+			return pageArray;
+		}
+	},
 	methods:{
 		
-		getKeeps: function(){
-			var urlKeeps = 'tasks';
+		getKeeps: function(page){
+			var urlKeeps = 'tasks?page='+page;
 			axios.get(urlKeeps).then(response => {
-				this.keeps = response.data
+				this.keeps = response.data.tasks.data
+				this.pagination = response.data.pagination
 			});
 		},
 
@@ -23317,7 +23350,11 @@ new Vue({
 			}).catch(error => {
 				this.error = error.response.data;
 			});
+		},
+
+		changePage: function(){
+			this.pagination.current_page = page;
+			this.getKeeps(page);
 		}
-		
 	}
 });

@@ -12,20 +12,20 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Response $request)
     {
-        $tasks = Task::orderBy('id','DESC')->get();
-        return $tasks;
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $tasks = Task::orderBy('id','DESC')->paginate($request->page);
+        return [
+            'pagination'  =>  [
+                'total'         =>  $tasks->total(),
+                'current_page'  =>  $tasks->currentPage(),
+                'per_page'      =>  $tasks->perPage(),
+                'last_page'     =>  $tasks->lastPage(),
+                'from'          =>  $tasks->firstItem(),
+                'to'            =>  $tasks->lastPage()
+            ],
+            'tasks'     =>  $tasks
+        ];
     }
 
     /**
@@ -41,17 +41,6 @@ class TaskController extends Controller
         ]);
         Task::create($request->all());
         return;
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \Vue\Models\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Task $task)
-    {
-        //
     }
 
     /**
@@ -75,9 +64,8 @@ class TaskController extends Controller
      */
     public function update(Request $request, Task $task)
     {
-        $task = Task::find($task);
-        $task->keep = $request->keep;
-        $task->save();
+        $task = Task::find($task->id);
+        $task->fill($request->all())->save();
         return;
     }
 
@@ -89,6 +77,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        $task->destroy($task->id);
+        Task::find($task->id)->delete();
+        return;
     }
 }

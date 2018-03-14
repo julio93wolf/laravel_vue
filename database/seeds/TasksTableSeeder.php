@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use LaravelVue\Models\Task;
+use Vue\Models\Task;
 
 class TasksTableSeeder extends Seeder
 {
