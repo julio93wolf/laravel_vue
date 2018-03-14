@@ -15,7 +15,8 @@ new Vue({
 		},
 		newKeep: '',
 		errors: [],
-		fillKeep: {'id' : '', 'keep': ''}
+		fillKeep: {'id' : '', 'keep': ''},
+		offset : 2
 	},
 	computed:{
 		isActived: function(){
@@ -25,11 +26,11 @@ new Vue({
 			if (!this.pagination.to) {
 				return [];
 			}
-			var from = this.pagination.current_page - 2; //TODO [Offset]
+			var from = this.pagination.current_page - this.offset; 
 			if(from < 1){
-				form = 1;
+				from = 1;
 			}
-			var to = from + (2 * 2); //TODO [Offset]
+			var to = from + (this.offset * 2); 
 			if (to >= this.pagination.last_page){
 				to = this.pagination.last_page;
 			}
@@ -43,7 +44,7 @@ new Vue({
 	},
 	methods:{
 		getKeeps: function(page){
-			var urlKeeps = 'tasks?page=' + page;
+			var urlKeeps = 'tasks?page='+page;
 			axios.get(urlKeeps).then(response => {
 				this.keeps = response.data.tasks.data
 				this.pagination = response.data.pagination

@@ -12,9 +12,9 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Response $request)
+    public function index(Request $request)
     {
-        $tasks = Task::orderBy('id','DESC')->paginate($request->page);
+        $tasks = Task::orderBy('id','DESC')->paginate(2);
         return [
             'pagination'  =>  [
                 'total'         =>  $tasks->total(),
@@ -41,18 +41,6 @@ class TaskController extends Controller
         ]);
         Task::create($request->all());
         return;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \Vue\Models\Task  $task
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Task $task)
-    {
-        $task = Task::findOrFail($task);
-        return $task;
     }
 
     /**

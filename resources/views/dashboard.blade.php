@@ -33,17 +33,14 @@
 		
 			<nav>
 				<ul class="pagination">
-					<li class="page-item">
-						<a class="page-link" href=""><span>Atrás</span></a>
+					<li class="page-item" v-if="pagination.current_page > 1">
+						<a class="page-link" href="#" @click.prevent="changePage(pagination.current_page - 1)"><span>Atrás</span></a>
 					</li>
-					<li class="page-item">
-						<a class="page-link" href=""><span>1</span></a>
+					<li class="page-item" v-for="page in pagesNumber" v-bind:class="[ page == isActived ? 'active' : '' ]">
+						<a class="page-link" href="#" @click.prevent="changePage(page)" > @{{ page }} </a>
 					</li>
-					<li class="page-item">
-						<a class="page-link" href=""><span>2</span></a>
-					</li>
-					<li class="page-item">
-						<a class="page-link" href=""><span>Siguiente</span></a>
+					<li class="page-item" v-if="pagination.current_page < pagination.last_page">
+						<a class="page-link" href="#" @click.prevent="changePage(pagination.current_page + 1)"><span>Siguiente</span></a>
 					</li>
 				</ul>
 			</nav>
